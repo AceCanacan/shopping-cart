@@ -1,11 +1,8 @@
 // File: src/components/cart.jsx
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Container, Table, Button, Form, Modal } from 'react-bootstrap';
+import { Button, Table, Form, Modal } from 'react-bootstrap';
 
-const Cart = ({ cart, updateQuantity }) => {
-  const navigate = useNavigate();
-
+const Cart = ({ cart, updateQuantity, onCheckout }) => {
   const [showModal, setShowModal] = useState(false);
   const [itemToRemove, setItemToRemove] = useState(null);
 
@@ -35,7 +32,7 @@ const Cart = ({ cart, updateQuantity }) => {
   };
 
   return (
-    <Container>
+    <>
       <h2 className="my-4">Cart</h2>
       {filteredCart.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -77,15 +74,10 @@ const Cart = ({ cart, updateQuantity }) => {
 
       {filteredCart.length > 0 && <h4>Total: ${total.toFixed(2)}</h4>}
       <div className="d-flex justify-content-between my-3">
-        <Button variant="secondary" onClick={() => navigate('/')}>
-          Back
-        </Button>
         {filteredCart.length > 0 ? (
-          <Link to="/checkout" style={{ textDecoration: 'none' }}>
-            <Button variant="primary">
-              Checkout
-            </Button>
-          </Link>
+          <Button variant="primary" onClick={onCheckout}>
+            Checkout
+          </Button>
         ) : (
           <Button variant="primary" disabled>
             Checkout
@@ -113,7 +105,7 @@ const Cart = ({ cart, updateQuantity }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </>
   );
 };
 

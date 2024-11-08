@@ -1,14 +1,13 @@
 // File: src/components/checkout.jsx
 import React, { useState } from 'react';
+import { Button, Table, Modal, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Container, Table, Button, Modal, Spinner, Alert } from 'react-bootstrap';
 
-const Checkout = ({ cart, clearCart }) => {
-  const navigate = useNavigate();
+const Checkout = ({ cart, clearCart, onClose }) => {
   const [show, setShow] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState('');
-
+  const navigate = useNavigate();
   const filteredCart = cart.filter(item => item.quantity > 0);
   const total = filteredCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -23,6 +22,7 @@ const Checkout = ({ cart, clearCart }) => {
     } finally {
       setProcessing(false);
     }
+    
   };
 
   const handleClose = () => {
@@ -31,7 +31,7 @@ const Checkout = ({ cart, clearCart }) => {
   };
 
   return (
-    <Container>
+    <>
       <h2 className="my-4">Checkout</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       {filteredCart.length === 0 ? (
@@ -64,7 +64,7 @@ const Checkout = ({ cart, clearCart }) => {
       )}
       <h4>Total Payment: ${total.toFixed(2)}</h4>
       <div className="d-flex justify-content-between my-3">
-        <Button variant="secondary" onClick={() => navigate('/cart')}>
+        <Button variant="secondary" onClick={() => navigate('/')}>
           Cancel
         </Button>
         <Button variant="success" onClick={handlePay} disabled={processing || filteredCart.length === 0}>
@@ -83,7 +83,7 @@ const Checkout = ({ cart, clearCart }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </>
   );
 };
 

@@ -1,9 +1,8 @@
 // File: src/App.jsx
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProductList from './components/productlist';
-import Cart from './components/cart';
-import Checkout from './components/checkout';
+import Screen from './pages/home';
+import Checkout from './pages/checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -35,10 +34,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ProductList addToCart={addToCart} />} />
         <Route
-          path="/cart"
-          element={<Cart cart={cart} updateQuantity={updateQuantity} />}
+          path="/"
+          element={
+            <Screen
+              cart={cart}
+              addToCart={addToCart}
+              updateQuantity={updateQuantity}
+            />
+          }
         />
         <Route
           path="/checkout"

@@ -1,13 +1,12 @@
-// File: src/productlist.jsx
+// File: src/components/productlist.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button, Form, Pagination } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Pagination, Row } from 'react-bootstrap';
 
 const ProductList = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [addedToCart, setAddedToCart] = useState(null); // Track added item temporarily
+  const [addedToCart, setAddedToCart] = useState(null);
   const productsPerPage = 20;
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const ProductList = ({ addToCart }) => {
   const handleAddToCart = (product) => {
     addToCart(product);
     setAddedToCart(product.id);
-    setTimeout(() => setAddedToCart(null), 1000); // Clear the indicator after 1 second
+    setTimeout(() => setAddedToCart(null), 1000);
   };
 
   return (
@@ -43,11 +42,6 @@ const ProductList = ({ addToCart }) => {
             value={filter}
             onChange={e => { setFilter(e.target.value); setCurrentPage(1); }}
           />
-        </Col>
-        <Col className="text-end">
-          <Link to="/cart">
-            <Button variant="primary">Cart</Button>
-          </Link>
         </Col>
       </Row>
       <Row>
