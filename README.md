@@ -25,3 +25,5 @@ A web-based shopping cart interface that allows users to add items, view their c
   - **react-router-dom**
 - **react-bootstrap**
   - **bootstrap**
+
+<img width="1470" alt="Screenshot 2024-11-08 at 9 33 43 PM" src="https://github.com/user-attachments/assets/db82d4ca-5a0e-4c3b-a92c-8f1dde3123db">
