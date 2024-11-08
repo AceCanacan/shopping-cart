@@ -20,12 +20,20 @@ A web-based shopping cart interface that allows users to add items, view their c
 
 ## Libraries Used
 
-- **react**
-  - **react-dom**
-  - **react-router-dom**
-- **react-bootstrap**
-  - **bootstrap**
-- **state-management**
-  - **usehook-ts**
+                                    react
+                                      |
+          -------------------------------------------------
+         |                                                 |
+    react-dom                                      react-router-dom
+
+                                      |
+                                  react-bootstrap
+                                      |
+                                ----------------
+                               |                |
+                          bootstrap    state-management
+                                                 |
+                                          usehooks-ts
+
 
 <img width="1470" alt="Screenshot 2024-11-08 at 9 33 43 PM" src="https://github.com/user-attachments/assets/db82d4ca-5a0e-4c3b-a92c-8f1dde3123db">
